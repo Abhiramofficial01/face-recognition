@@ -10,9 +10,10 @@ import joblib
 import glob
 import os
 import time
+from flask import Flask,render_template,redirect, url_for
+from flask_mail import Mail,Message
 #### Defining Flask App
 app = Flask(__name__)
-
 
 #### Saving Date today in 2 different formats
 datetoday = date.today().strftime("%m_%d_%y")
@@ -115,7 +116,7 @@ def start():
 
     cap = cv2.VideoCapture(0)
     start_time = time.time()  # Capture the start time
-    duration = 10  # Set the attendance time duration in seconds
+    duration = 20  # Set the attendance time duration in seconds
 
     while True:
         elapsed_time = time.time() - start_time  # Calculate the elapsed time
@@ -186,11 +187,13 @@ def results():
      mydata = list(data.values)
      return render_template('results.html', datetoday2=datetoday2,mydata = mydata)
 
-
-
+@app.route('/signup')
+def signup():
+    return render_template('signup.html')
 @app.route("/login", methods=['GET', 'POST'])
 def login():
 	return render_template("login.html")
+
 #### Our main function which runs the Flask App
 if __name__ == '__main__':
     app.run(debug=True)

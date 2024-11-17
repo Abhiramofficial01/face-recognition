@@ -1,42 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
 <html class="no-js" lang="zxx">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Face Recognition</title>
-    <meta name="description" content="">
+    <title>Face Recognition - Signup</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- <link rel="manifest" href="site.webmanifest"> -->
-    <!-- Place favicon.ico in the root directory -->
-
-    <!-- CSS here -->
+    
+    <!-- Keeping your existing CSS imports -->
     <link rel="stylesheet" href="../static/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../static/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="../static/css/magnific-popup.css">
-    <link rel="stylesheet" href="../static/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../static/css/themify-icons.css">
-    <link rel="stylesheet" href="../static/css/nice-select.css">
-    <link rel="stylesheet" href="../static/css/audioplayer.css">
-    <link rel="stylesheet" href="../static/css/flaticon.css">
-    <link rel="stylesheet" href="../static/css/gijgo.css">
-    <link rel="stylesheet" href="../static/css/animate.css">
-    <link rel="stylesheet" href="../static/css/slick.css">
-    <link rel="stylesheet" href="../static/css/slicknav.css">
     <link rel="stylesheet" href="../static/css/style.css">
-    <!-- <link rel="stylesheet" href="css/responsive.css"> -->
+    <!-- Add other CSS files as in your original -->
 </head>
 
 <body>
-    <!--[if lte IE 9]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-        <![endif]-->
-
-
-    <!-- header-start -->
+    <!-- Header (Same as original) -->
     <header>
-        <div class="header-area ">
+        <div class="header-area">
             <div id="sticky-header" class="main-header-area">
                 <div class="container-fluid">
                     <div class="header_bottom_border">
@@ -49,31 +28,27 @@
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-7">
-                                <div class="main-menu  d-none d-lg-block">
+                                <div class="main-menu d-none d-lg-block">
                                     <nav>
                                         <ul id="navigation">
-                                             <li><a class="active" href="{{url_for('index')}}">Home</a></li>
+                                            <li><a href="{{url_for('index')}}">Home</a></li>
                                             <li><a href="{{url_for('login')}}">Login</a></li>
+                                            <li><a class="active" href="{{url_for('signup')}}">Signup</a></li>
                                         </ul>
                                     </nav>
                                 </div>
-                            </div>
-                            <div class="col-xl-3 col-lg-3 d-none d-lg-block">
-                                
                             </div>
                             <div class="col-12">
                                 <div class="mobile_menu d-block d-lg-none"></div>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </header>
-    <!-- header-end -->
 
-    <!-- bradcam_area  -->
+    <!-- Signup Form -->
     <div class="bradcam_area breadcam_bg_2">
         <div class="container">
             <div class="row">
@@ -85,35 +60,176 @@
             </div>
         </div>
     </div>
-    <!--/ bradcam_area  -->
-  <!-- ================ contact section start ================= -->
-  <section class="contact-section section_padding">
-    <div class="container">
-     
 
-      <div class="row">
-        <div class="col-12">
-         <center> <h2 class="contact-title">Login</h2></center>
+   
+
+    <!-- Modified Login Form with Email -->
+    <section class="contact-section section_padding" id="loginSection">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <center><h2 class="contact-title">Login</h2></center>
+                </div>
+                <div class="col-md-8 col-lg-6" style="margin-left:450px">
+                    <!-- First Step: Username/Password -->
+                    <form id="loginForm" onsubmit="return validateFirstStep(event)">
+                        <div class="control-group">
+                            <label class="control-label" for="username"><b>Username</b></label>
+                            <div class="controls">
+                                <input type="text" id="uname" name="uname" class="form-control" required>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="control-group">
+                            <label class="control-label" for="password"><b>Password</b></label>
+                            <div class="controls">
+                                <input type="password" id="pwd" name="pwd" class="form-control" required>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="control-group">
+                            <div class="controls">
+                                <button id="continueButton" class="btn btn-primary" onclick="showVerificationForm()">Continue</button>
+                            </div>
+                        </div>
+                    </form>
+                  
+
+    <!-- Verification form, initially hidden -->
+    <form id="verificationForm" style="display: none; margin-top: 20px;" onsubmit="return validateSecondStep(event)">
+        <div class="control-group">
+            <label class="control-label" for="verificationCode"><b>Verification Code</b></label>
+            <div class="controls">
+                <input type="text" id="verificationCode" name="verificationCode" class="form-control" required>
+                <small class="text-muted">Enter the verification code sent to your email</small>
+            </div>
         </div>
-       
-	   
-	   
-	   <div class="row">
-         
-		 
-				 
-					 
-					 
-			 
-		 
-			 
-		 
-		  <head>
+        <br>
+        <div class="control-group">
+            <div class="controls">
+                <button type="submit" class="btn btn-primary" style="margin-left: 250px">Verify</button>
+            </div>
+        </div>
+    </form>
 
-        
-         
-	
-		 <script>
+    <script>
+        // Function to show the verification form and hide the "Continue" button
+        function showVerificationForm() {
+            document.getElementById('continueButton').style.display = 'none';
+            document.getElementById('verificationForm').style.display = 'block';
+        }
+
+        // Function to validate the verification code
+        function validateSecondStep(event) {
+            event.preventDefault();
+            
+            const verificationCode = document.getElementById('verificationCode').value;
+            if (verificationCode === '123456') { // Replace with actual verification handling
+                alert("Login successful!");
+                window.location = "{{ url_for('adds') }}";
+                return false;
+            } else {
+                alert("Invalid verification code!");
+                return false;
+            }
+        }
+    </script>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (Same as original) -->
+    <footer class="footer">
+        <div class="copy-right_text">
+            <div class="container">
+                <div class="footer_border"></div>
+                <p style="text-align: center;">Made By 2024ET23 ❤️</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simulated user database (In production, this should be server-side)
+        let users = [
+            {
+                username: 'ete',
+                password: 'ete',
+                email: 'abhiramoff001@gmail.com'
+            }
+        ];
+
+        // Signup validation
+        function validateSignup(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById('signup_username').value;
+            const email = document.getElementById('signup_email').value;
+            const password = document.getElementById('signup_password').value;
+            const confirmPassword = document.getElementById('confirm_password').value;
+
+            if (password !== confirmPassword) {
+                alert("Passwords don't match!");
+                return false;
+            }
+
+            // Check if username already exists
+            if (users.some(user => user.username === username)) {
+                alert("Username already exists!");
+                return false;
+            }
+
+            // Add new user
+            users.push({
+                username: username,
+                password: password,
+                email: email
+            });
+
+            alert("Signup successful! Please login.");
+            window.location = "{{url_for('login')}}";
+            return false;
+        }
+
+        // First step login validation
+        function validateFirstStep(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById('uname').value;
+            const password = document.getElementById('pwd').value;
+
+            const user = users.find(u => u.username === username && u.password === password);
+            
+            if (user) {
+                // Hide login form and show verification form
+                document.getElementById('loginForm').style.display = 'none';
+                document.getElementById('verificationForm').style.display = 'block';
+                
+                // Simulate sending verification code to email
+                alert(`Verification code would be sent to ${user.email}`);
+                return false;
+            } else {
+                alert("Invalid credentials!");
+                return false;
+            }
+        }
+
+        // Second step verification
+        function validateSecondStep(event) {
+            event.preventDefault();
+            
+            const verificationCode = document.getElementById('verificationCode').value;
+            if (verificationCode === '123456') { // Replace with actual verification handling
+                alert("Login successful!");
+                window.location = "{{ url_for('adds') }}";
+                return false;
+            } else {
+                alert("Invalid verification code!");
+                return false;
+            }
+        }
+
+        // URL bar hiding (from original)
         addEventListener("load", function () {
             setTimeout(hideURLbar, 0);
         }, false);
@@ -121,133 +237,7 @@
         function hideURLbar() {
             window.scrollTo(0, 1);
         }
-
-        function login(){
-        var uname = document.getElementById("uname").value;
-        var pwd = document.getElementById("pwd").value;
-
-	if(uname == "ete" && pwd == "ete")
-	{
-	  alert("Login Success!");
-	  
-	  window.location = "{{url_for('adds')}}";
-	  return false;
-	}
-	else
-	{
-	alert("Invalid Credentials!")
-	}
-        }
-		
-		  
-
-
- 
     </script>
-	
-</head>
- 
- <body id="page-top">
-
-   
- 	 
-
-  <!-- Portfolio Section -->
-  <section class="page-section portfolio" id="portfolio">
- 
-      <br>
-	  <br>
-      <!-- Portfolio Section Heading -->
-       
-      <!-- Icon Divider -->
-    
- 
-      <!-- Portfolio Grid Items -->
-      <div class="row">
- 
-        <div class="col-md-8 col-lg-6" style="margin-left:450px">
-		 <div class="control-group">
-			      <!-- Username -->
-				  
-				 </br>
-				 </br>
-				
-			      <label class="control-label"   for="username"><b>Username</b></label>
-			      <div class="controls">
-			        <input type="text" id="uname" name="uname" placeholder="" class="form-control">
-			       
-				  </div>
-			    </div>
-				</br>
-			
-			    <div class="control-group">
-			      <!-- Password-->
-				  
-			      <label class="control-label"  for="password"><b>Password</b></label>
-			      <div class="controls">
-			        <input type="password" id="pwd" name="pwd" placeholder="" class="form-control">
-			      
-				  </div>
-			    </div>
-				 <div class="col-md-6 col-lg-4" style="margin-left:-150px">
-			    <div class="control-group">
-			      <!-- Button -->
-				  <br>
-			      <div class="controls">
-				   
-			        <input type="button" class="btn btn-primary" value="Login" style="margin-left: 250px" onclick="login()">
-			      
-				  </div>
-			    </div>
-				 </div>
-  </div>
-  </div>
- 
- 
-  </section>
-
-
-  
-
-    </body>
-		  
-	   
-	   
-	   
-	   
-	   
-	   
-	   
-	   
-	   
-	   
-	   
-	   
-	   
-      </div>
-    </div>
-  </section>
-  <!-- ================ contact section end ================= -->
-
-   
-  <!-- footer start -->
-<footer class="footer">
-    <div class="footer_top">
-        <div class="container">
-            <div class="row">
-                <!-- Add any content here if needed -->
-            </div>
-        </div>
-    </div>
-    <div class="copy-right_text">
-        <div class="container">
-            <div class="footer_border"></div>
-            <p style="text-align: center;">Made By 2024ET23 ❤️</p>
-        </div>
-    </div>
-</footer>
-<!--/ footer end  -->
-
 
   <!-- JS here -->
  <script src="../static/js/vendor/modernizr-3.5.0.min.js"></script>
@@ -280,4 +270,4 @@
     <script src="../static/js/main.js"></script>
 </body>
 
-</html>
+</html

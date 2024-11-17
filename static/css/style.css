@@ -2071,12 +2071,12 @@ h3 {
 /* line 235, ../../Arafath/CL/Cl November/221. Music/HTML/scss/_music_area.scss */
 .music_gallery .audioplayer:not(.audioplayer-playing) .audioplayer-playpause {
   background: rgba(91, 130, 255, 0);
-  border: 1px solid #615CFD !important;
+  border: 1px solid #5ce8fd !important;
 }
 
 /* line 239, ../../Arafath/CL/Cl November/221. Music/HTML/scss/_music_area.scss */
 .music_gallery .audioplayer:not(.audioplayer-playing) .audioplayer-playpause a {
-  border-left: 12px solid #615CFD !important;
+  border-left: 12px solid #5cdafd !important;
 }
 
 /* line 242, ../../Arafath/CL/Cl November/221. Music/HTML/scss/_music_area.scss */
@@ -2775,7 +2775,7 @@ h3 {
 .footer .footer_top {
   padding-top: 100px;
   padding-bottom: 129px;
-  background: #007bff61;
+  background:#87CEEB;
 }
 
 @media (max-width: 767px) {
